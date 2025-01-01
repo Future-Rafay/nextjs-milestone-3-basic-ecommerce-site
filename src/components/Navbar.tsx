@@ -1,4 +1,5 @@
-// components/Navbar.tsx
+"use client"
+
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -17,7 +18,7 @@ const Navbar = () => {
           {/* Menu Items */}
           <div className="hidden md:flex space-x-6">
             <Link href="/" className="hover:text-emerald-300">Home</Link>
-            <Link href="/products" className="hover:text-emerald-300">Products </Link>
+            <Link href="/product" className="hover:text-emerald-300">Products </Link>
             <Link href="/about" className="hover:text-emerald-300">About</Link>
             <Link href="/contact" className="hover:text-emerald-300">Contact</Link>
           </div>

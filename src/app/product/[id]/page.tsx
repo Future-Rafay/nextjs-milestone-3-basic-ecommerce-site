@@ -1,6 +1,5 @@
 "use client"
 
-// app/product/[id]/page.tsx
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 

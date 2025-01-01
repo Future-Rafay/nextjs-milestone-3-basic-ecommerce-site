@@ -1,6 +1,8 @@
+"use client"
+
 import React from 'react'
 import { useEffect, useState } from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '@/components/ProductCard';
 
 type Product = {
     id: number;

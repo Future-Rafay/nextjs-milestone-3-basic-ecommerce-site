@@ -1,25 +1,26 @@
 "use client"
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const testimonials = [
   {
     name: "John Doe",
     role: "Software Engineer",
-    image: "https://via.placeholder.com/80",
+    image: "/images/rafay.jpg",
     testimonial:
       "This is the best e-commerce platform I have ever used. The UI is seamless, and the product quality is outstanding!",
   },
   {
     name: "Jane Smith",
     role: "Digital Marketer",
-    image: "https://via.placeholder.com/80",
+    image: "/images/rafay.jpg",
     testimonial:
       "Excellent customer service and a user-friendly interface. I love the ease of shopping here!",
   },
   {
     name: "Robert Brown",
     role: "Entrepreneur",
-    image: "https://via.placeholder.com/80",
+    image: "/images/rafay.jpg",
     testimonial:
       "The range of products available is incredible. The website is intuitive and very responsive!",
   },
@@ -53,10 +54,12 @@ const Testimonials = () => {
               className="bg-white shadow-lg rounded-lg p-6"
             >
               {/* Profile Picture */}
-              <img
+              <Image
                 src={testimonial.image}
                 alt={testimonial.name}
                 className="w-20 h-20 rounded-full mx-auto"
+                width={80} 
+                height={80}
               />
               {/* Name and Role */}
               <h3 className="text-xl font-semibold text-center mt-4 text-dark-slate">
@@ -65,7 +68,7 @@ const Testimonials = () => {
               <p className="text-center text-gray-500">{testimonial.role}</p>
               {/* Testimonial */}
               <p className="mt-6 text-center text-gray-700 italic">
-                "{testimonial.testimonial}"
+              &#34;{testimonial.testimonial}&#34;
               </p>
             </motion.div>
           ))}

@@ -5,7 +5,8 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { addToCart } from "@/lib/ApiData";
+import { addToCart, Products } from "@/lib/ApiData";
+import Image from "next/image";
 
 // Function to fetch wishlist IDs from localStorage
 function getWishlist(): number[] {
@@ -17,7 +18,7 @@ function getWishlist(): number[] {
 }
 
 // Function to fetch product data by ID (replace with API call if needed)
-async function fetchProductById(productId: number) {
+async function fetchProductById(productId: number): Promise<Products | null>  {
   try {
     const response = await fetch(`https://fakestoreapi.com/products/${productId}`);
     if (!response.ok) throw new Error("Failed to fetch product");
@@ -28,8 +29,10 @@ async function fetchProductById(productId: number) {
   }
 }
 
+
+
 const Wishlist = () => {
-  const [wishlistItems, setWishlistItems] = useState<any[]>([]);
+  const [wishlistItems, setWishlistItems] = useState<Products[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   // Fetch wishlist products based on IDs
@@ -100,14 +103,16 @@ const Wishlist = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-white rounded-lg shadow-xl overflow-hidden hover:shadow-2xl"
               >
-                <img
+                <Image
                   src={item.image}
-                  alt={item.name}
+                  alt={item.title}
                   className="w-full h-48 object-cover"
+                  width={400}
+                  height={192}
                 />
                 <div className="p-6 space-y-4">
                   <h3 className="text-xl font-semibold text-dark-slate">
-                    {item.name}
+                    {item.title}
                   </h3>
                   <p className="text-gray-500">{item.description}</p>
                   <p className="text-lg font-bold text-indigo-600">
@@ -120,7 +125,7 @@ const Wishlist = () => {
                       onClick={() => {
                         addToCart({
                           id: item.id,
-                          title: item.name, // Assuming item.name maps to title
+                          title: item.title, // Assuming item.name maps to title
                           price: Number(item.price), // Ensure price is a number
                           rate: item.rating?.rate || 0, // Default to 0 if rating is unavailable
                           image: item.image, // Assuming the item has an image property

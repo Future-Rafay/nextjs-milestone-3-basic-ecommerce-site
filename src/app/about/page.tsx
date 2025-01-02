@@ -4,27 +4,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FaHandshake, FaChartLine, FaCogs } from "react-icons/fa";
 import { motion } from "framer-motion";
 import Testimonials from "@/components/Testmonials";
+import Image from "next/image";
 
 const teamMembers = [
   {
     name: "Alice Johnson",
     role: "CEO",
-    image: "https://via.placeholder.com/150",
+    image: "/images/rafay.jpg",
   },
   {
     name: "Bob Smith",
     role: "CTO",
-    image: "https://via.placeholder.com/150",
+    image: "/images/rafay.jpg",
   },
   {
     name: "Carol Danvers",
     role: "Lead Designer",
-    image: "https://via.placeholder.com/150",
+    image: "/images/rafay.jpg",
   },
   {
     name: "Daniel Green",
     role: "Marketing Head",
-    image: "https://via.placeholder.com/150",
+    image: "/images/rafay.jpg",
   },
 ];
 
@@ -88,10 +89,12 @@ const AboutPage = () => {
             >
               <Card className="text-center">
                 <CardHeader>
-                  <img
+                  <Image
                     src={member.image}
                     alt={member.name}
                     className="rounded-full w-24 h-24 mx-auto"
+                    width={96}
+                    height={96}
                   />
                   <CardTitle className="mt-4">{member.name}</CardTitle>
                 </CardHeader>

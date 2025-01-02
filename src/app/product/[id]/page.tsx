@@ -1,5 +1,6 @@
 import NotFound from '@/app/not-found';
 import { SingleProduct, Products } from '@/lib/ApiData';  // Adjust import based on your structure
+import Image from 'next/image';
 
 // Server-side data fetching for the product details
 const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
@@ -10,6 +11,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   try {
     product = await SingleProduct(Number(id));  // Fetch the product details
   } catch (error) {
+    console.error("Error fetching product:", error);  // Log the error
     return <div><NotFound /></div>
   }
 
@@ -20,7 +22,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   return (
     <div className="container mx-auto p-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <img src={product.image} alt={product.title} className="w-full h-96 object-cover rounded-md" />
+        <Image src={product.image} alt={product.title} className="w-80 h-full object-cover rounded-md" width={500} height={600} />
         <div>
           <h1 className="text-3xl font-semibold">{product.title}</h1>
           <p className="text-xl font-bold text-indigo-600 mt-2">${product.price}</p>

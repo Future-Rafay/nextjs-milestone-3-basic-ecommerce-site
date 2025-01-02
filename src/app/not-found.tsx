@@ -23,7 +23,7 @@ const NotFound = () => {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="text-2xl mt-4"
       >
-        Oops! The page you're looking for doesn't exist.
+        Oops! The page you&apos;re looking for doesn&apos;t exist.
       </motion.h2>
 
       {/* Suggested Links with staggered animations */}

@@ -6,6 +6,7 @@ import { BsFillCartFill } from "react-icons/bs"; // React Icon for Cart
 import { Button } from "@/components/ui/button"; // ShadCN UI Button
 import { CartProduct, getCart, handleItemCount, removeFromCart } from "@/lib/ApiData";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
@@ -89,7 +90,7 @@ const Cart = () => {
                 transition={{ duration: 0.3 }}
                 className="bg-white rounded-lg shadow-md p-6 flex items-center space-x-6"
               >
-                <img src={item.image} alt={item.title} className="w-24 h-24 object-cover" />
+                <Image src={item.image} alt={item.title} className="w-24 h-24 object-cover" width={96} height={96}/>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold text-dark-slate">{item.title}</h3>
                   <p className="text-gray-500 mt-2">Price: ${item.price.toFixed(2)}</p>

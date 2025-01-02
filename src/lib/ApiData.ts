@@ -1,4 +1,4 @@
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toastify CSS
 
 export interface Products {
@@ -22,19 +22,19 @@ export interface CartProduct extends Pick<Products, 'id' | 'title' | 'image' | '
 }
 
 async function Data(): Promise<Products[]> {
-  let req = await fetch('https://fakestoreapi.com/products');
-  let data = await req.json();
+  const req = await fetch('https://fakestoreapi.com/products');
+  const data = await req.json();
   return data;
 }
 
 async function Categories(cats: string): Promise<Products[]> {
-  let req = await fetch(`https://fakestoreapi.com/products/category/${cats}`);
-  let data = await req.json();
+  const req = await fetch(`https://fakestoreapi.com/products/category/${cats}`);
+  const data = await req.json();
   return data;
 }
 async function SingleProduct(id: number): Promise<Products> {
-  let req = await fetch(`https://fakestoreapi.com/products/${id}`);
-  let data = await req.json();
+  const req = await fetch(`https://fakestoreapi.com/products/${id}`);
+  const data = await req.json();
   return data;
 }
 

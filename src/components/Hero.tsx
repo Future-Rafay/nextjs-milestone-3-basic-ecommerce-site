@@ -39,6 +39,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { FaShoppingCart, FaInfoCircle } from "react-icons/fa";
 
 const Hero = () => {
@@ -86,10 +87,12 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <img
-            src="https://via.placeholder.com/600x400"
+          <Image
+            src="/images/rafay.jpg"
             alt="Hero Image"
             className="rounded-lg shadow-xl transform hover:scale-105 transition-transform"
+            width={400}
+            height={400}
           />
         </motion.div>
       </div>

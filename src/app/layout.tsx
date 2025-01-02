@@ -22,7 +22,7 @@ export default function RootLayout({
         <ToastContainer />
         {children}
         <Footer />
-        </body>
+      </body>
     </html>
   )
 }

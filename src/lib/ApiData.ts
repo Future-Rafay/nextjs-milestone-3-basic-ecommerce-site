@@ -1,7 +1,7 @@
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toastify CSS
 
-interface Products{
+export interface Products{
     id: number,
     title: string,
     price: number,
@@ -14,7 +14,7 @@ interface Products{
     }
 }
 
-interface CartProduct extends Pick<Products, 'id' | 'title' | 'image' | 'price'> {
+export interface CartProduct extends Pick<Products, 'id' | 'title' | 'image' | 'price'> {
   rate: Products['rating'] extends { rate: number } ? Products['rating']['rate'] : null;
   itemCount: number;
   color:  string;

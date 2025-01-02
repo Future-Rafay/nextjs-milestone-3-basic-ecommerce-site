@@ -1,24 +1,25 @@
-// components/ProductCard.tsx
 import Link from 'next/link';
+import { Products } from '@/lib/ApiData';
 
-type Product = {
-  id: number;
-  name: string;
-  price: number;
-  description: string;
-};
+interface ProductCardProps {
+  product: Products;
+}
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div className="border p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-      <h2 className="text-xl font-semibold">{product.name}</h2>
-      <p>{product.description}</p>
-      <p className="text-xl font-bold">${product.price}</p>
+    <div className="border p-4 rounded-lg shadow-md hover:shadow-lg transition duration-300">
       <Link href={`/product/${product.id}`}>
-        <button className="mt-4 px-4 py-2 bg-blue-500 text-white rounded">View Details</button>
+        <div className='flex flex-col items-center w-full h-full justify-evenly'>
+          <img src={product.image} alt={product.title} className="w-full h-auto object-cover rounded-md mb-4" />
+          <div>
+            <h2 className="text-xl font-semibold">{product.title}</h2>
+            <p className="text-sm text-gray-500">{product.category}</p>
+            <p className="text-lg font-bold text-indigo-600 mt-2">${product.price}</p>
+          </div>
+        </div>
       </Link>
     </div>
   );
 };
 
-export default ProductCard;
+export { ProductCard };

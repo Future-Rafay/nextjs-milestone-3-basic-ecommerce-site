@@ -74,7 +74,7 @@
 // export { ProductCard };
 
 import Link from 'next/link';
-import { addToWishlist, getWishlist, Products, removeFromWishlist } from '@/lib/ApiData';
+import { addToCart, addToWishlist, getWishlist, Products, removeFromWishlist } from '@/lib/ApiData';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';  // Importing heart icons for add/remove wishlist
 import { useState } from 'react';
 
@@ -93,6 +93,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       addToWishlist(product.id); // If product is not in wishlist, add it
       setIsInWishlist(true);
     }
+  };
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+      itemCount: 1, // Default quantity
+      size: "", // Default size (optional)
+      color: "", // Default color (optional)
+      rate: 0, // Default rate, or set this value appropriately
+    });
   };
 
   return (
@@ -121,6 +134,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         </button>
 
         <button
+        onClick={handleAddToCart}
           className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300"
         >
           Add to Cart

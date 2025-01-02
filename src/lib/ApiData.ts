@@ -179,4 +179,3 @@ const handleItemColor = (id: number, color: string) => {
 
 export { Data, Categories, SingleProduct, getWishlist, addToWishlist, removeFromWishlist, getRecentlyViewedProducts, addRecentlyViewedProduct, getCart, addToCart, removeFromCart, handleItemCount, handleItemSize, handleItemColor };
 
-// Don't forget to include <ToastContainer /> in your main component, usually in App.tsx or wherever your main component is:

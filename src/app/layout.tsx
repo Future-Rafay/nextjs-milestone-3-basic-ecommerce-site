@@ -1,6 +1,9 @@
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer";
 import "./globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 export const metadata = {
   title: 'Next.js',
@@ -16,6 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="max-w-7xl mx-auto">
         <Navbar />
+        <ToastContainer />
         {children}
         <Footer />
         </body>

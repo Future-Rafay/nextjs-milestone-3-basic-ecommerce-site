@@ -50,7 +50,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="md:hidden space-y-2 mt-2">
             <Link href="/" className="block hover:bg-emerald-500 px-3 py-2 rounded">Home</Link>
-            <Link href="/products" className="block hover:bg-emerald-500 px-3 py-2 rounded">Products</Link>
+            <Link href="/product" className="block hover:bg-emerald-500 px-3 py-2 rounded">Products</Link>
             <Link href="/about" className="block hover:bg-emerald-500 px-3 py-2 rounded">About</Link>
             <Link href="/contact" className="block hover:bg-emerald-500 px-3 py-2 rounded">Contact</Link>
             <Link href="/wishlist" className="block hover:bg-emerald-500 px-3 py-2 rounded">Wishlist</Link>
@@ -59,7 +59,7 @@ const Navbar = () => {
         )}
       </div>
     </nav>
-  );
+  );  
 };
 
 export default Navbar;

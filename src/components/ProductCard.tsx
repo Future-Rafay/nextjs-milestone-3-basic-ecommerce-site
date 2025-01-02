@@ -36,7 +36,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     });
   };
 
-
   return (
     <div className="relative group border p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 hover:bg-indigo-50">
       <div className="flex flex-col items-center w-full h-full justify-between">
@@ -65,22 +64,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           >
             <FaShoppingCart className="w-8 h-8" />
           </button>
-          {/* <button
+          <button
               className="flex items-center justify-center bg-emerald-400 text-white py-2 px-4 rounded-md text-sm font-medium shadow-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all duration-200"
               onClick={handleWishlistClick}
             >
-              <FaHeart className="w-8 h-8" />
-            </button> */}
-          <button
-            onClick={handleWishlistClick}
-            className="text-red-600 hover:text-red-700 transition duration-300"
-          >
-            {isInWishlist ? (
-              <FaHeart size={24} />
+              {isInWishlist ? (
+              <FaHeart size={32} />
             ) : (
-              <FaRegHeart size={24} />
+              <FaRegHeart size={32} />
             )}
-          </button>
+            </button>
+          
         </div>
       </div>
 

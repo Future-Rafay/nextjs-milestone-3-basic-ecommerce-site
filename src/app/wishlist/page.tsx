@@ -53,10 +53,6 @@ const Wishlist = () => {
     toast.error("Product removed from your wishlist.");
   };
 
-  
-
-
-
   return (
     <div className="bg-light-gray py-16">
       <div className="max-w-7xl mx-auto px-6">

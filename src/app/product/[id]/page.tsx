@@ -1,6 +1,4 @@
-
-// app/product/[id]/page.tsx
-
+import NotFound from '@/app/not-found';
 import { SingleProduct, Products } from '@/lib/ApiData';  // Adjust import based on your structure
 
 // Server-side data fetching for the product details
@@ -12,7 +10,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
   try {
     product = await SingleProduct(Number(id));  // Fetch the product details
   } catch (error) {
-    alert('Error fetching product details');
+    return <div><NotFound /></div>
   }
 
   if (!product) {
@@ -31,7 +29,7 @@ const ProductDetailPage = async ({ params }: { params: { id: string } }) => {
           <p className="text-sm text-gray-500 mt-2">Rating: {product.rating.rate} ({product.rating.count} reviews)</p>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 

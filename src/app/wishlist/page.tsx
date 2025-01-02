@@ -53,6 +53,8 @@ const Wishlist = () => {
     toast.error("Product removed from your wishlist.");
   };
 
+  
+
 
 
   return (
@@ -116,11 +118,6 @@ const Wishlist = () => {
                     ${item.price}
                   </p>
                   <div className="flex justify-between items-center">
-                    {/* <Button className="w-full mt-4" variant="secondary"
-                    onClick={}
-                    >
-                      Move to Cart
-                    </Button> */}
                     <Button
                       className="w-full mt-4"
                       variant="secondary"
@@ -134,11 +131,12 @@ const Wishlist = () => {
                           itemCount: 1, // Default to 1
                           size: "", // Adjust if size is available
                           color: "", // Adjust if color is available
+
                         });
                         handleRemoveFromWishlist(item.id);
-                        toast.success(`${item.name} moved to cart.`);
                       }}
                     >
+                    
                       Move to Cart
                     </Button>
                     <button

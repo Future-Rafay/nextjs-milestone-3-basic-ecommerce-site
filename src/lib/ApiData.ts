@@ -1,41 +1,41 @@
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the toastify CSS
 
-export interface Products{
-    id: number,
-    title: string,
-    price: number,
-    description: string,
-    category: string,
-    image: string,
-    rating:{
-        rate: number,
-        count: number
-    }
+export interface Products {
+  id: number,
+  title: string,
+  price: number,
+  description: string,
+  category: string,
+  image: string,
+  rating: {
+    rate: number,
+    count: number
+  }
 }
 
 export interface CartProduct extends Pick<Products, 'id' | 'title' | 'image' | 'price'> {
   rate: Products['rating'] extends { rate: number } ? Products['rating']['rate'] : null;
   itemCount: number;
-  color:  string;
+  color: string;
   size: string;
 }
 
-async function Data(): Promise<Products[]>{
-    let req = await fetch('https://fakestoreapi.com/products');
-    let data = await req.json();
-    return data;
+async function Data(): Promise<Products[]> {
+  let req = await fetch('https://fakestoreapi.com/products');
+  let data = await req.json();
+  return data;
 }
 
-async function Categories(cats: string): Promise<Products[]>{
-    let req = await fetch(`https://fakestoreapi.com/products/category/${cats}`);
-    let data = await req.json();
-    return data;
+async function Categories(cats: string): Promise<Products[]> {
+  let req = await fetch(`https://fakestoreapi.com/products/category/${cats}`);
+  let data = await req.json();
+  return data;
 }
-async function SingleProduct(id: number): Promise<Products>{
-    let req = await fetch(`https://fakestoreapi.com/products/${id}`);
-    let data = await req.json();
-    return data;
+async function SingleProduct(id: number): Promise<Products> {
+  let req = await fetch(`https://fakestoreapi.com/products/${id}`);
+  let data = await req.json();
+  return data;
 }
 
 // Wishlist functions

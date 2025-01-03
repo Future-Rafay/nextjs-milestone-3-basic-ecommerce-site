@@ -92,7 +92,8 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaShoppingCart, FaInfoCircle } from "react-icons/fa";
+import Link from "next/link";
+import { FaShoppingCart } from "react-icons/fa";
 
 const Hero = () => {
   return (
@@ -112,7 +113,9 @@ const Hero = () => {
             Discover a world of vibrant choices for every style, need, and occasion.
           </p>
           <div className="mt-8 space-x-4 flex justify-center lg:justify-start">
+            <Link href='/product'>
             <motion.button
+            
               className="px-8 py-3 bg-primary text-primary-foreground rounded-lg shadow-md hover:bg-indigo-600 flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -120,14 +123,7 @@ const Hero = () => {
               <FaShoppingCart className="mr-2" />
               Shop Now
             </motion.button>
-            <motion.button
-              className="px-8 py-3 bg-neutral-100 text-primary rounded-lg shadow-md hover:bg-neutral-200 flex items-center"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 300 }}
-            >
-              <FaInfoCircle className="mr-2" />
-              Explore Categories
-            </motion.button>
+            </Link>
           </div>
         </motion.div>
 
@@ -150,7 +146,7 @@ const Hero = () => {
 
       {/* Featured Categories Section */}
       <motion.div
-        className="mt-16 text-center"
+        className="mt-16 mx-4 text-center"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}

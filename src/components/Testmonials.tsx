@@ -4,23 +4,23 @@ import Image from "next/image";
 
 const testimonials = [
   {
-    name: "John Doe",
+    name: "Franklin Homie",
     role: "Software Engineer",
-    image: "/images/rafay.jpg",
+    image: "/images/jimmy.jpg",
     testimonial:
       "This is the best e-commerce platform I have ever used. The UI is seamless, and the product quality is outstanding!",
   },
   {
-    name: "Jane Smith",
+    name: "Michal de santa",
     role: "Digital Marketer",
-    image: "/images/rafay.jpg",
+    image: "/images/carl.jpg",
     testimonial:
       "Excellent customer service and a user-friendly interface. I love the ease of shopping here!",
   },
   {
-    name: "Robert Brown",
+    name: "Traver philips",
     role: "Entrepreneur",
-    image: "/images/rafay.jpg",
+    image: "/images/chandler.jpg",
     testimonial:
       "The range of products available is incredible. The website is intuitive and very responsive!",
   },

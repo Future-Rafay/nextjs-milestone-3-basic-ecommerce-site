@@ -10,6 +10,7 @@ import Image from "next/image";
 import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Link from "next/link";
+import { FiArrowRight } from "react-icons/fi";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
@@ -60,7 +61,7 @@ const Cart = () => {
   };
 
   return (
-    <div className="bg-light-gray py-16">
+    <div className="bg-light-gray py-16 border-x-2 border-primary">
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <motion.h2
@@ -78,11 +79,21 @@ const Cart = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mt-10 text-center text-dark-slate"
+            className="mt-10 min-h-screen text-center text-dark-slate"
           >
             <BsFillCartFill size={60} className="mx-auto mb-4 text-indigo-600" />
             <p className="text-xl font-semibold">Your Cart is Empty</p>
             <p className="mt-4 text-gray-500">Browse our products and add them to your cart!</p>
+            <div className="mt-8 w-full text-center">
+              <Link href="/product">
+                <Button
+                  className="mx-auto bg-indigo-500 text-white hover:bg-indigo-700 transition-all duration-300 px-6 py-3 rounded-lg shadow-md font-semibold flex items-center justify-center gap-2"
+                >
+                  See New Fashion
+                  <FiArrowRight className="w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         ) : (
           // If there are items in the cart

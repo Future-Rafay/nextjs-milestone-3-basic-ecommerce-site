@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { addToCart, Products } from "@/lib/ApiData";
 import Image from "next/image";
-import { FaTrashAlt } from "react-icons/fa";
+import { FaPaperPlane, FaTrashAlt } from "react-icons/fa";
 import { BsFillCartFill } from "react-icons/bs";
 import Link from "next/link";
 
@@ -93,6 +93,16 @@ const Wishlist = () => {
             <p className="mt-4 text-gray-500">
               Browse products and add them to your wishlist!
             </p>
+            <div className="mt-8 w-full text-center">
+              <Link href="/product">
+                <Button
+                  className="mx-auto bg-indigo-500 text-white hover:bg-indigo-700 transition-all duration-300 px-6 py-3 rounded-lg shadow-md font-semibold flex items-center justify-center gap-2"
+                >
+                  See New Products
+                  <FaPaperPlane className="w-5 h-5" />
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         ) : (
           // If there are items in the wishlist

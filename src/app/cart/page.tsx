@@ -7,10 +7,14 @@ import { Button } from "@/components/ui/button"; // ShadCN UI Button
 import { CartProduct, getCart, handleItemCount, removeFromCart } from "@/lib/ApiData";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+import Link from "next/link";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
   // Fetch cart items from localStorage on component mount
   useEffect(() => {
@@ -18,9 +22,11 @@ const Cart = () => {
       const items = getCart();
       setCartItems(items);
       updateTotalAmount(items);
+
     };
 
     fetchCart();
+    setLoading(false);
 
     // Listen for cart updates
     const handleCartUpdate = () => fetchCart();
@@ -42,7 +48,6 @@ const Cart = () => {
     const updatedItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedItems);
     updateTotalAmount(updatedItems);
-    toast.error("Product removed from your cart.");
   };
 
   const handleUpdateItemCount = (id: number, count: number) => {
@@ -86,70 +91,84 @@ const Cart = () => {
               <motion.div
                 key={item.id}
                 whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-lg shadow-md p-6 flex items-center space-x-6"
+                className="bg-white rounded-lg shadow-md p-4 flex flex-col sm:flex-row items-center sm:space-x-6 space-y-4 sm:space-y-0 border-2 border-solid border-gray-300"
               >
-                <Image src={item.image} alt={item.title} className="w-24 h-24 object-cover" width={96} height={96}/>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold text-dark-slate">{item.title}</h3>
-                  <p className="text-gray-500 mt-2">Price: ${item.price.toFixed(2)}</p>
+                <Link href={`/product/${item.id}`}>
+                  <Image
+                    src={item.image}
+                    alt={item.title}
+                    className="w-24 sm:w-20 md:w-24 h-auto object-cover mx-auto sm:mx-0"
+                    width={96}
+                    height={96}
+                  />
+                </Link>
+                <div className="flex-1 text-center sm:text-left">
+                  <Link href={`/product/${item.id}`}>
+                    <h3 className="text-lg sm:text-xl font-semibold text-dark-slate">
+                      {item.title}
+                    </h3>
+                  </Link>
+                  <p className="text-gray-500 mt-1 text-sm sm:text-base">
+                    Price: ${item.price.toFixed(2)}
+                  </p>
                   <p className="text-gray-500 mt-2">
                     Quantity:{" "}
                     <button
                       onClick={() => handleUpdateItemCount(item.id, -1)}
-                      className="px-2 text-white bg-red-500 rounded ml-2 hover:bg-red-600"
+                      className="p-1.5 text-white bg-red-500 rounded ml-2 hover:bg-red-600"
                     >
-                      -
+                      <FaMinus size={12} />
                     </button>
                     <span className="mx-2">{item.itemCount}</span>
                     <button
                       onClick={() => handleUpdateItemCount(item.id, 1)}
-                      className="px-2 text-white bg-green-500 rounded hover:bg-green-600"
+                      className="p-1.5 text-white bg-green-500 rounded hover:bg-green-600"
                     >
-                      +
+                      <FaPlus size={12} />
                     </button>
                   </p>
                 </div>
-                <div className="flex flex-col items-end">
+                <div className="flex flex-col items-center sm:items-end">
                   <p className="text-indigo-600 font-semibold">
                     ${(item.price * item.itemCount).toFixed(2)}
                   </p>
                   <button
                     onClick={() => handleRemoveItem(item.id)}
-                    className="mt-4 text-red-600 hover:text-red-700 transition duration-300"
+                    className="mt-4 text-red-500 hover:text-red-700 transition duration-300"
                   >
-                    Remove
+                    <FaTrashAlt size={20} />
                   </button>
                 </div>
               </motion.div>
             ))}
+            {cartItems.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="mt-6 flex flex-col sm:flex-row justify-between items-center text-lg font-semibold"
+              >
+                <p className="mb-4 sm:mb-0">Total Amount:</p>
+                <p className="text-indigo-600">{`$${totalAmount.toFixed(2)}`}</p>
+              </motion.div>
+            )}
+            <Button
+              className="mt-6 mx-auto bg-secondary hover:bg-accent w-full sm:w-auto"
+              disabled={cartItems.length === 0}
+              onClick={() => toast.success("Proceeding to checkout!")}
+            >
+              Proceed to Checkout <MdOutlineShoppingCartCheckout />
+            </Button>
           </div>
+
         )}
 
         {/* Total Amount and Checkout */}
-        {cartItems.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="mt-6 flex justify-between items-center text-lg font-semibold"
-          >
-            <p>Total Amount:</p>
-            <p className="text-indigo-600">{`$${totalAmount.toFixed(2)}`}</p>
-          </motion.div>
-        )}
-        <Button
-          className="mt-6 w-full"
-          variant="outline"
-          disabled={cartItems.length === 0}
-          onClick={() => toast.success("Proceeding to checkout!")}
-        >
-          Proceed to Checkout
-        </Button>
       </div>
     </div>
   );
 };
 
 export default Cart;
+

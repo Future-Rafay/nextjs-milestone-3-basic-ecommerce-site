@@ -59,7 +59,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <p className="text-lg font-bold text-indigo-600 mt-2">${product.price}</p>
             </div>
           </div>
-        </Link>
+        </Link> 
         <div className="flex w-full items-center justify-between px-4">
           <button
             className="flex items-center bg-indigo-500 text-white py-2 px-4 rounded-md text-sm font-medium shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"

@@ -16,7 +16,7 @@ const FeaturedProductsCard: React.FC<FeaturedProductsCardProps> = ({ product }) 
           <Image
             src={product.image}
             alt={product.title}
-            className="w-56 h-auto mx-auto object-cover rounded-md transition-transform duration-300 hover:scale-110"
+            className="w-[300px] h-[300px] mx-auto object-contain rounded-md transition-transform duration-300 hover:scale-110"
             width={300}
             height={300}
           />

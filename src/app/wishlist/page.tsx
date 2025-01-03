@@ -110,7 +110,7 @@ const Wishlist = () => {
                     <Image
                       src={item.image}
                       alt={item.title}
-                      className="w-40 h-auto mx-auto object-cover transition-transform duration-300 group-hover:scale-110 "
+                      className="w-40 h-auto mx-auto object-contain transition-transform duration-300 group-hover:scale-110 "
                       width={400}
                       height={400}
                     />

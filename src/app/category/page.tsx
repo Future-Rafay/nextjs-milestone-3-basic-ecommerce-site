@@ -21,13 +21,13 @@ const CategorySection = () => {
 
         <Link href="/category/mens-clothing">
           <div className="bg-neutral-100 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition cursor-pointer">
-            <h3 className="text-xl font-bold text-primary">Men's Clothing</h3>
+            <h3 className="text-xl font-bold text-primary">Men&#39;s Clothing</h3>
           </div>
         </Link>
 
         <Link href="/category/womens-clothing">
           <div className="bg-neutral-100 p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition cursor-pointer">
-            <h3 className="text-xl font-bold text-primary">Women's Clothing</h3>
+            <h3 className="text-xl font-bold text-primary">Women&#39;s Clothing</h3>
           </div>
         </Link>
 

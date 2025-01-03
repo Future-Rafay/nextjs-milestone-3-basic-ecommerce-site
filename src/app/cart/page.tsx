@@ -98,7 +98,7 @@ const Cart = () => {
                   <Image
                     src={item.image}
                     alt={item.title}
-                    className="w-24 sm:w-20 md:w-24 h-auto object-cover mx-auto sm:mx-0"
+                    className="w-24 sm:w-20 md:w-24  h-24 sm:h-20 md:h-24 object-contain mx-auto sm:mx-0"
                     width={96}
                     height={96}
                   />

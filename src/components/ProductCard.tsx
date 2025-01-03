@@ -46,9 +46,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <Image
                 src={product.image}
                 alt={product.title}
-                className="w-full h-auto object-cover rounded-md transition-transform duration-300 group-hover:scale-110 "
-                width={600}
-                height={600}
+                className="w-[300px] h-[300px] object-contain rounded-md transition-transform duration-300 group-hover:scale-110 "
+                width={300}
+                height={300}
               />
             </div>
             <div className="text-center">

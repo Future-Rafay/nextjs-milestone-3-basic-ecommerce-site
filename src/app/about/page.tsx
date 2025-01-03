@@ -63,7 +63,7 @@ const AboutPage = () => {
       >
         <h2 className="text-3xl font-bold text-primary text-center">Our Mission</h2>
         <p className="mt-4 text-center text-lg text-gray-700">
-          At VividCart, we aim to provide high-quality products in electronics, jewelry, men's clothing, and women's clothing,
+          At VividCart, we aim to provide high-quality products in electronics, jewelry, men&#39;s clothing, and women&#39;s clothing,
           creating a dynamic and seamless shopping experience for all.
         </p>
       </motion.section>

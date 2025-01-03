@@ -72,20 +72,6 @@ const Wishlist = () => {
 
         {/* If loading */}
         {loading ? (
-          // <div className="flex flex-col items-center justify-center min-h-screen bg-light-gray text-dark-slate">
-          //   <motion.div
-          //     initial={{ opacity: 0, scale: 0.8 }}
-          //     animate={{ opacity: 1, scale: 1 }}
-          //     transition={{ duration: 0.5, ease: "easeInOut" }}
-          //     className="flex flex-col items-center space-y-4"
-          //   >
-          //     <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-indigo-600 border-opacity-75"></div>
-          //     <h2 className="text-xl font-semibold text-dark-slate">
-          //       Loading your Wishlist...
-          //     </h2>
-          //     <p className="text-gray-500">Please wait while we fetch your items.</p>
-          //   </motion.div>
-          // </div>
           <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

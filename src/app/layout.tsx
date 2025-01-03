@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="theme-color" content="#4F46E5" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/favicon.png" />
       </head>
       <body
         className={`bg-background text-foreground max-w-7xl mx-auto ${inter.className}`}

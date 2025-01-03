@@ -14,7 +14,7 @@ import Link from "next/link";
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
-  const [loading, setLoading] = useState<boolean>(true);
+
 
   // Fetch cart items from localStorage on component mount
   useEffect(() => {
@@ -26,7 +26,7 @@ const Cart = () => {
     };
 
     fetchCart();
-    setLoading(false);
+
 
     // Listen for cart updates
     const handleCartUpdate = () => fetchCart();

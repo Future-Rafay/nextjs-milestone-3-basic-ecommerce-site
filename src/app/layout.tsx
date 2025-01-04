@@ -36,10 +36,16 @@ export default function RootLayout({
         className={`bg-background text-foreground max-w-7xl mx-auto ${inter.className}`}
       >
         <Navbar />
-        <ToastContainer />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={3000} // Toast disappears after 3 seconds
+          limit={2}       // Ensures only one toast is shown at a time
+          closeOnClick    // Allows dismissing by clicking
+          pauseOnHover    // Pause on hover for better user experience
+        />
         {children}
         <Footer />
-      </body>
+      </body> 
     </html>
   );
 }

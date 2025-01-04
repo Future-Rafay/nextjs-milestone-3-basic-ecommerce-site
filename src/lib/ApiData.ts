@@ -54,7 +54,7 @@ function addToWishlist(productId: number): void {
       wishlist.push(productId);
       localStorage.setItem("wishlist", JSON.stringify(wishlist));
       window.dispatchEvent(new Event("wishlistUpdated"));
-      toast.success("Product added to your wishlist.");
+      toast.info("Product added to your wishlist.");
     }
   }
 }

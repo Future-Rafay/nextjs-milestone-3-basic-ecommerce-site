@@ -11,10 +11,14 @@ import { FaMinus, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import Link from "next/link";
 import { FiArrowRight } from "react-icons/fi";
+import { Card, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<CartProduct[]>([]);
   const [totalAmount, setTotalAmount] = useState<number>(0);
+  const [totalItems, setTotalItems] = useState<number>(0);
+
 
 
   // Fetch cart items from localStorage on component mount
@@ -23,7 +27,7 @@ const Cart = () => {
       const items = getCart();
       setCartItems(items);
       updateTotalAmount(items);
-
+      updateTotalItemCount(items);
     };
 
     fetchCart();
@@ -44,11 +48,9 @@ const Cart = () => {
     setTotalAmount(total);
   };
 
-  const handleRemoveItem = (id: number) => {
-    removeFromCart(id);
-    const updatedItems = cartItems.filter((item) => item.id !== id);
-    setCartItems(updatedItems);
-    updateTotalAmount(updatedItems);
+  const updateTotalItemCount = (items: CartProduct[]) => {
+    const totalItems = items.reduce((count, item) => count + item.itemCount, 0);
+    setTotalItems(totalItems);
   };
 
   const handleUpdateItemCount = (id: number, count: number) => {
@@ -57,8 +59,19 @@ const Cart = () => {
       item.id === id ? { ...item, itemCount: item.itemCount + count } : item
     );
     setCartItems(updatedItems.filter((item) => item.itemCount > 0));
+    updateTotalAmount(updatedItems);      // Recalculate total amount
+    updateTotalItemCount(updatedItems);   // Recalculate total item count
+  };
+
+
+
+  const handleRemoveItem = (id: number) => {
+    removeFromCart(id);
+    const updatedItems = cartItems.filter((item) => item.id !== id);
+    setCartItems(updatedItems);
     updateTotalAmount(updatedItems);
   };
+
 
   return (
     <div className="bg-light-gray py-16 border-x-2 border-primary">
@@ -68,9 +81,10 @@ const Cart = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center text-indigo-600"
+          className="text-2xl md:text-4xl font-bold text-center text-indigo-600 flex items-center justify-center gap-2 md:gap-4"
         >
-          Your Cart
+          <span> Your Cart</span>
+          <BsFillCartFill className="w-5 h-5 md:w-8 md:h-8" />
         </motion.h2>
 
         {/* If Cart is Empty */}
@@ -103,79 +117,101 @@ const Cart = () => {
                 key={item.id}
                 whileHover={{ scale: 1.03 }}
                 transition={{ duration: 0.3 }}
-                className="bg-white rounded-lg shadow-md p-4 flex flex-col sm:flex-row items-center sm:space-x-6 space-y-4 sm:space-y-0 border-2 border-solid border-gray-300"
+                className="bg-white rounded-lg shadow-md p-1 md:p-4 flex flex-row md:items-center sm:space-x-6 sm:space-y-0 border-2 border-solid border-gray-300"
               >
                 <Link href={`/product/${item.id}`}>
                   <Image
                     src={item.image}
                     alt={item.title}
-                    className="w-24 sm:w-20 md:w-24  h-24 sm:h-20 md:h-24 object-contain mx-auto sm:mx-0"
+                    className="w-14 sm:w-16 md:w-24  h-14 sm:h-16 md:h-24 object-contain mx-auto sm:mx-0 mr-2 md:mr-0"
                     width={96}
                     height={96}
                   />
+
                 </Link>
-                <div className="flex-1 text-center sm:text-left">
+
+                <div className="flex-1 text-left">
+
                   <Link href={`/product/${item.id}`}>
-                    <h3 className="text-lg sm:text-xl font-semibold text-dark-slate">
+
+                    <h3 className="text-[8px] sm:text-base md:text-lg font-semibold text-dark-slate">
                       {item.title}
                     </h3>
                   </Link>
-                  <p className="text-gray-500 mt-1 text-sm sm:text-base">
+                  <p className="text-gray-500 mt-1 text-[10px] md:text-sm sm:text-base">
                     Price: ${item.price.toFixed(2)}
                   </p>
-                  <p className="text-gray-500 mt-2">
+                  <p className="text-[8px] md:text-base text-gray-500 md:mt-2">
                     Quantity:{" "}
                     <button
                       onClick={() => handleUpdateItemCount(item.id, -1)}
-                      className="p-1.5 text-white bg-red-500 rounded ml-2 hover:bg-red-600"
+                      className="p-0.5 md:p-1.5 text-white bg-red-500 rounded md:ml-2 hover:bg-red-600"
                     >
-                      <FaMinus size={12} />
+                      <FaMinus className="w-2 h-2  md:w-3 md:h-3" />
                     </button>
-                    <span className="mx-2">{item.itemCount}</span>
+                    <span className="text-[10px] sm:text-sm md:text-sm mx-1 md:mx-2">{item.itemCount}</span>
                     <button
                       onClick={() => handleUpdateItemCount(item.id, 1)}
-                      className="p-1.5 text-white bg-green-500 rounded hover:bg-green-600"
+                      className="p-0.5 md:p-1.5 text-white bg-green-500 rounded hover:bg-green-600"
                     >
-                      <FaPlus size={12} />
+                      <FaPlus className="w-2 h-2 md:w-3 md:h-3" />
                     </button>
                   </p>
                 </div>
-                <div className="flex flex-col items-center sm:items-end">
-                  <p className="text-indigo-600 font-semibold">
+                <div className="flex flex-col  justify-between  items-end">
+                  <p className="ml-3 md:ml-0 text-xs md:text-base font-semibold">
                     ${(item.price * item.itemCount).toFixed(2)}
                   </p>
                   <button
                     onClick={() => handleRemoveItem(item.id)}
-                    className="mt-4 text-red-500 hover:text-red-700 transition duration-300"
+                    className="mb-1 md:mt-4 text-red-500 hover:text-red-700 transition duration-300"
                   >
-                    <FaTrashAlt size={20} />
+                    <FaTrashAlt className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4" />
                   </button>
                 </div>
               </motion.div>
             ))}
             {cartItems.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
-                className="mt-6 flex flex-col sm:flex-row justify-between items-center text-lg font-semibold"
-              >
-                <p className="mb-4 sm:mb-0">Total Amount:</p>
-                <p className="text-indigo-600">{`$${totalAmount.toFixed(2)}`}</p>
-              </motion.div>
+              <div className="relative">
+                <Card className="h-fit sticky top-4">
+                  <CardContent className="p-6">
+                    <h2 className="text-lg md:text-xl font-semibold mb-4">Cart Total</h2>
+                    <div className="space-y-4">
+                      <div className="flex justify-between text-xs md:text-base">
+                        <span>Total Items</span>
+                        <span>{totalItems}</span>
+                      </div>
+                      <Separator />
+
+                      <div className="flex justify-between text-xs md:text-base">
+                        <span>Delivery</span>
+                        <span>$0</span>
+                      </div>
+                      <div className="text-muted-foreground text-xs md:text-base">Free Delivery</div>
+                      <Separator />
+                      <div className="flex justify-between font-medium text-xs md:text-base">
+                        <span>Total</span>
+                        <span>${totalAmount.toFixed(2)}</span>
+                      </div>
+                      <Button
+                        className="mt-8 mx-auto bg-secondary hover:bg-accent w-full sm:w-auto"
+                        disabled={cartItems.length === 0}
+                        onClick={() => toast.success("Proceeding to checkout!")}
+                      >
+                        Proceed to Checkout <MdOutlineShoppingCartCheckout />
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             )}
-            <Button
-              className="mt-6 mx-auto bg-secondary hover:bg-accent w-full sm:w-auto"
-              disabled={cartItems.length === 0}
-              onClick={() => toast.success("Proceeding to checkout!")}
-            >
-              Proceed to Checkout <MdOutlineShoppingCartCheckout />
-            </Button>
+
+
           </div>
 
         )}
 
-        {/* Total Amount and Checkout */}
+
       </div>
     </div>
   );

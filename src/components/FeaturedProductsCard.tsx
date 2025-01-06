@@ -11,7 +11,7 @@ interface FeaturedProductsCardProps {
 
 const FeaturedProductsCard: React.FC<FeaturedProductsCardProps> = ({ product }) => {
   return (
-    <div className="relative border p-4 rounded-lg shadow-lg hover:shadow-xl hover:bg-emerald-50">
+    <div className="relative border p-4 rounded-lg shadow-lg md:hover:shadow-xl">
       <Link href={`/product/${product.id}`} className="flex flex-col items-center justify-between text-center"
 
       >

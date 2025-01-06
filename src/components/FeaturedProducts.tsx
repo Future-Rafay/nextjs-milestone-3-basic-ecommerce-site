@@ -30,32 +30,32 @@ const FeaturedProducts = () => {
 
   return (
     <motion.div
-      className="container mx-auto p-8 "
+      className="container mx-auto p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       <motion.h2
-        className="text-4xl font-extrabold text-center mb-8 text-gray-800"
+        className="text-2xl md:text-4xl  font-bold text-center mb-8 text-gray-800"
         initial={{ y: -20 }}
-        animate={{ y: 0 }}
+        animate={{ y: 0 }}  
         transition={{ duration: 0.5 }}
       >
         Featured <span className="text-indigo-600">Products</span>
       </motion.h2>
 
       {loading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="flex space-x-4 overflow-x-auto scrollbar-hide">
           {[...Array(4)].map((_, index) => (
             <Skeleton
               key={index}
-              className="h-80 bg-gray-200 rounded-lg shadow-md animate-pulse"
+              className="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%] h-80 bg-gray-200 rounded-lg shadow-md animate-pulse"
             />
           ))}
         </div>
       ) : (
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"
+          className="flex space-x-6 overflow-x-auto scrollbar-hide"
           initial="hidden"
           animate="visible"
           variants={{
@@ -70,6 +70,7 @@ const FeaturedProducts = () => {
           {products.map((product) => (
             <motion.div
               key={product.id}
+              className="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%]"
               variants={{
                 hidden: { opacity: 0, y: 20 },
                 visible: { opacity: 1, y: 0 },
@@ -81,7 +82,7 @@ const FeaturedProducts = () => {
         </motion.div>
       )}
 
-      <div className="mt-8  text-center">
+      <div className="mt-8 text-center">
         <Link href="/product">
           <Button
             className="bg-indigo-500 text-white hover:bg-indigo-700 transition-all duration-300 px-6 py-3 rounded-lg shadow-md font-semibold flex items-center justify-center gap-2"

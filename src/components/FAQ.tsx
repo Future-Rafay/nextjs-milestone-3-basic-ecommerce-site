@@ -40,7 +40,7 @@ const FAQ = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl font-bold text-center text-indigo-600"
+          className="text-2xl md:text-4xl font-bold text-center text-indigo-600"
         >
           Frequently Asked Questions
         </motion.h2>

@@ -1,38 +1,38 @@
 "use client";
 
 import { motion } from "framer-motion";
+
 import Image from "next/image";
 import Link from "next/link";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaShoppingBag } from "react-icons/fa";
 
 const Hero = () => {
   return (
-    <section className="bg-primary-foreground text-primary py-16">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center">
-        
+    <section className="bg-primary-foreground pb-20 md:py-10 ">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col-reverse lg:flex-row items-center space-y-8 lg:space-y-0">
         {/* Text Section */}
         <motion.div
           className="lg:w-1/2 text-center lg:text-left"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2 }}
         >
-          <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-indigo-600">
-            Welcome to <span className="text-indigo-800">VividCart</span>!
+          <h1 className="text-4xl lg:text-5xl font-extrabold leading-tight text-primary">
+            Step Into <span className="text-indigo-800">VividCart</span>!
           </h1>
           <p className="mt-4 text-lg text-gray-700 max-w-md mx-auto lg:mx-0">
-            Discover a world of vibrant choices for every style, need, and occasion. Shop now to elevate your shopping experience!
+            Your one-stop destination for lively, handpicked products that match your lifestyle. Let’s make every purchase count!
           </p>
-          
+
           <div className="mt-8 space-x-4 flex justify-center lg:justify-start">
             <Link href="/product">
               <motion.button
-                className="px-8 py-3 bg-indigo-600 text-white rounded-lg shadow-lg hover:bg-indigo-700 flex items-center"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                className="px-8 py-3 bg-primary text-white rounded-lg shadow-lg hover:bg-indigo-700 flex items-center"
+                whileHover={{ scale: 1.1, rotate: 2 }}
+                transition={{ type: "spring", stiffness: 250 }}
               >
-                <FaShoppingCart className="mr-2" />
-                Shop Now
+                <FaShoppingBag className="mr-2" />
+                Explore Now
               </motion.button>
             </Link>
           </div>
@@ -40,18 +40,25 @@ const Hero = () => {
 
         {/* Image Section */}
         <motion.div
-          className="lg:w-1/2 mt-8 lg:mt-0"
+          className="lg:w-1/2 mt-8 lg:mt-0 flex justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
         >
-          <Image
-            src="/svgs/intro.svg"
-            alt="Hero Image"
-            className="rounded-lg shadow-xl transform hover:scale-105 transition-transform"
-            width={500}
-            height={500}
-          />
+          <motion.div
+            className="w-full max-w-sm lg:max-w-md transform perspective-1000"
+            whileHover={{ rotateY: 180 }}
+            transition={{ duration: 0.8 }}
+          >
+            <Image
+              src="/images/hero.png"
+              alt="Hero Image"
+              className="rounded-lg backface-hidden"
+              width={500}
+              height={500}
+              priority
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

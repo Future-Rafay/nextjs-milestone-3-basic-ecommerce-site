@@ -79,9 +79,10 @@ const ProductDetailPage = ({ params }: { params: { id: string } }) => {
           <Image
             src={product.image}
             alt={product.title}
-            className="rounded-lg object-contain shadow-xl hover:scale-105 transition-transform"
+            className="rounded-lg object-contain shadow-xl hover:scale-105 transition-transform w-96 h-96 my-auto"
             width={500}
             height={600}
+            priority
           />
         </div>
 

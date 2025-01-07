@@ -14,8 +14,8 @@ const ContactPage = () => {
         transition={{ duration: 0.7 }}
         className="py-16 text-center"
       >
-        <h1 className="text-5xl text-primary font-bold mb-4">Let&apos;s Connect! 🤝</h1>
-        <p className="mt-4 text-xl text-gray-600">We&apos;d love to hear from you! Drop us a message and we&apos;ll get back to you ASAP! 📨</p>
+        <h1 className="text-2xl md:text-4xl lg:text-5xl text-primary font-bold mb-4">Let&apos;s Connect! 🤝</h1>
+        <p className="mt-4 text-base md:text-xl text-gray-600">We&apos;d love to hear from you! Drop us a message and we&apos;ll get back to you ASAP! 📨</p>
       </motion.section>
 
       {/* Contact Form */}

@@ -6,7 +6,7 @@ const ProductsPage = async () => {
   const products: Products[] = await Data(); // Placeholder for the API call
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 border-x-2 border-primary">
       {/* Hero Section */}
       <section className="relative bg-indigo-600 text-white py-20">
         <div className="container mx-auto text-center">
@@ -29,7 +29,7 @@ const ProductsPage = async () => {
         <h2
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-10 text-indigo-800"
         >
-          Our <span className="text-yellow-500">Products</span>
+          Our All <span className="text-yellow-500">Products</span>
         </h2>
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {products.map((product) => (

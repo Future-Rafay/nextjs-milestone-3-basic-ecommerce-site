@@ -26,7 +26,7 @@ const FeaturedProductsCard: React.FC<FeaturedProductsCardProps> = ({ product }) 
             transition={{ duration: 0.8 }}
           >
             <Image
-
+              priority
               src={product.image}
               alt={product.title}
               className="w-[300px] h-[300px] mx-auto object-contain rounded-md"

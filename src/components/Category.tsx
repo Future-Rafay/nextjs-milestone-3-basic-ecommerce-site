@@ -14,7 +14,7 @@ const Categories = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>("women's clothing");
 
-  const categories = ["electronics", "jewelery", "men's clothing", "women's clothing"];
+  const categories = ["Electronics", "Jewelery", "Men's Clothing", "Women's clothing"];
 
   useEffect(() => {
     const fetchProducts = async () => {

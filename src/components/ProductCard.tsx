@@ -49,6 +49,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 className="w-[300px] h-[300px] object-contain rounded-md transition-transform duration-300 group-hover:scale-110 "
                 width={300}
                 height={300}
+                priority
               />
             </div>
             <div className="text-center">

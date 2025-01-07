@@ -1,80 +1,118 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Categories from "@/components/Category";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
+import { Products } from "@/lib/ApiData";
+import { FeaturedProductsCard } from "@/components/FeaturedProductsCard";
+import { FaPaperPlane } from "react-icons/fa";
 
 const CategorySection = () => {
   const categories = [
-    {
-      name: "Electronics",
-      description: "Latest gadgets and devices.",
-      image: "/images/category/electronics.webp",
-      link: "/electronics",
-    },
-    {
-      name: "Men's Clothing",
-      description: "Stylish and comfortable wear.",
-      image: "/images/category/mensClothing.webp",
-      link: "/mens-clothing",
-    },
-    {
-      name: "Women's Clothing",
-      description: "Trendy and elegant outfits.",
-      image: "/images/category/womensClothing.webp",
-      link: "/womens-clothing",
-    },
-    {
-      name: "Jewelry",
-      description: "Exquisite pieces to shine.",
-      image: "/images/category/jewelery.webp",
-      link: "/jewelry",
-    },
+    "Electronics",
+    "Jewelery",
+    "Men's Clothing",
+    "Women's Clothing",
   ];
+
+  const [products, setProducts] = useState<Products[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState<string>("electronics");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data = await res.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
+
+  const filteredProducts = products.filter(
+    (product) => product.category.toLowerCase() === selectedCategory.toLowerCase()
+  );
 
   return (
     <motion.div
-      className="my-16 mx-4 lg:mx-16 text-center"
+      className="container mx-auto my-16 px-4 lg:px-16 text-center h-screen"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
       {/* Section Heading */}
-      <h2 className="text-3xl lg:text-4xl font-extrabold text-primary tracking-tight text-center">
+      <h2 className="text-3xl lg:text-4xl font-extrabold tracking-tight text-primary">
         Browse Our <span className="text-secondary">Categories</span>
       </h2>
-      <Categories />
-      {/* Category Grid */}
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2  gap-6 lg:gap-8 px-2 lg:px-8">
-        {categories.map((category, index) => (
-          <motion.div
-            key={index}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative bg-neutral-100 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-transform"
-          >
-            {/* Background Image */}
-            <img
-              src={category.image}
-              alt={category.name}
-              className="w-[400px] h-[400px] object-contain mx-auto"
-            />
 
-            {/* Content */}
-            <div className="absolute bottom-0 p-6 text-left text-white bg-gradient-to-b from-black">
-              <h3 className="text-xl lg:text-2xl font-bold">{category.name}</h3>
-              <p className="text-xs lg:text-sm mt-2">{category.description}</p>
-              <Link href={`/category/${category.link.toLowerCase()}`}>
-                <button className="mt-4 px-3 lg:px-4 py-2 bg-primary rounded-lg text-xs lg:text-sm font-semibold">
-                  Explore
-                </button>
-              </Link>
-            </div>
-          </motion.div>
+      {/* Category Buttons */}
+      <div className="flex flex-wrap justify-center gap-4 mt-8">
+        {categories.map((category) => (
+          <Button
+            key={category}
+            className={`${
+              selectedCategory === category
+                ? "bg-indigo-700 hover:bg-indigo-800"
+                : "bg-indigo-600 hover:bg-indigo-700"
+            } text-white text-xs md:text-base px-4 py-2 rounded`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </Button>
         ))}
       </div>
+
+      {/* Product Display */}
+      {loading ? (
+        <div className="mt-8 flex justify-center space-x-4">
+          {[...Array(4)].map((_, index) => (
+            <Skeleton
+              key={index}
+              className="flex-shrink-0 w-64 h-80 bg-gray-200 rounded-lg shadow-md animate-pulse"
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="mt-8">
+          {filteredProducts.length === 0 ? (
+            <p className="text-center text-gray-600">No products found in this category.</p>
+          ) : (
+            <div className="flex space-x-6 overflow-x-auto scrollbar-hide">
+              {filteredProducts.slice(0, 4).map((product) => (
+                <motion.div
+                  key={product.id}
+                  className="min-w-[80%] sm:min-w-[45%] md:min-w-[30%] lg:min-w-[23%]"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <FeaturedProductsCard product={product} />
+                </motion.div>
+              ))}
+            </div>
+          )}
+
+          {/* View All Button */}
+          <div className="mt-8 text-center">
+            <Link href={`/category/${selectedCategory}`}>
+              <Button className="bg-indigo-500 text-white hover:bg-indigo-700 transition-all duration-300 px-6 py-3 rounded-lg shadow-md font-semibold flex items-center justify-center gap-2">
+                View All {selectedCategory}
+                <FaPaperPlane className="w-5 h-5" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      )}
     </motion.div>
   );
 };
 
 export default CategorySection;
+

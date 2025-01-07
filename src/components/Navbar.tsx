@@ -45,6 +45,12 @@ const Navbar = () => {
               Products
             </Link>
             <Link
+              href="/category"
+              className="text-lg font-medium hover:text-secondary transition duration-300"
+            >
+              Categories
+            </Link>
+            <Link
               href="/about"
               className="text-lg font-medium hover:text-secondary transition duration-300"
             >
@@ -56,6 +62,7 @@ const Navbar = () => {
             >
               Contact
             </Link>
+            
           </div>
 
           {/* Wishlist and Cart Icons */}

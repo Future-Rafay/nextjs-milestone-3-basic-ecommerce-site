@@ -7,14 +7,13 @@ import Link from "next/link";
 const formatCategoryName = (category: string) => {
   return category
     .replace(/%20/g, " ") // Replace URL encoding
-    .replace(/\b\w/g, (char) => char.toUpperCase()) // Capitalize each word
     .replace(/'/g, "’"); // Replace single quotes with typographic quotes
 };
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
   const rawCategory = params.category; // Access the category from URL
   const formattedCategory = formatCategoryName(rawCategory); // Format category name
-  const products: Products[] = await Categories(formattedCategory.toLowerCase()); // Fetch products
+  const products: Products[] = await Categories(rawCategory.toLowerCase()); // Fetch products
 
   // Category descriptions (customizable)
   const categoryDescriptions: { [key: string]: string } = {
@@ -32,7 +31,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
     <div className="container mx-auto p-4">
       {/* SEO Metadata */}
       <head>
-        <title>{`Category: ${formattedCategory} | VividCart`}</title>
+        <title>{`${formattedCategory} | VividCart`}</title>
         <meta
           name="description"
           content={`Browse the best ${formattedCategory} products on VividCart.`}
@@ -41,16 +40,16 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
 
       {/* Breadcrumb */}
       <nav className="text-sm text-gray-600 mb-6">
-        <Link href="/">Home</Link> <span className="mx-1">/</span>
-        <span className="capitalize">{formattedCategory}</span>
+        <Link href="/">Home</Link> <span className="mx-1">/ <Link href='/category'>Category</Link> </span>
+        <span className="capitalize">/ {formattedCategory}</span>
       </nav>
 
       {/* Heading and Description */}
       <header className="text-center mb-10">
-        <h1 className="text-4xl font-bold underline mb-4">
+        <h1 className="text-2xl md:text-4xl font-bold mb-4 text-primary">
           {formattedCategory}
         </h1>
-        <p className="text-lg text-gray-600">{description}</p>
+        <p className="text-sm md:text-lg text-gray-600">{description}</p>
       </header>
 
       {/* Product Grid */}
@@ -59,7 +58,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
           Sorry, no products found in the <strong>{formattedCategory}</strong> category.
         </p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -67,7 +66,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
       )}
 
       {/* Pagination Placeholder */}
-      <div className="mt-8 flex justify-center">
+      <div className=" mt-8 md:mt-16 flex justify-center">
         <button
           disabled
           className="bg-gray-200 text-gray-500 px-4 py-2 rounded cursor-not-allowed"

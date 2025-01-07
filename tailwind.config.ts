@@ -25,7 +25,7 @@ const config: Config = {
           foreground: '#F9FAFB', // Light Gray (for contrast with text)
         },
         secondary: {
-          DEFAULT: '#10B981', // Emerald (Secondary Color)
+          DEFAULT: '#eab308', // Emerald (Secondary Color)
           foreground: '#F9FAFB', // Light Gray
         },
         muted: {

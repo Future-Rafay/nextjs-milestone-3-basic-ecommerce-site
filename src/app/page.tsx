@@ -6,7 +6,6 @@ import Categories from '@/components/Category';
 
 
 
-
 const Home = () => {
   return (
     <div className="max-w-7xl mx-auto border-x-2 border-primary bg-primary-foreground">

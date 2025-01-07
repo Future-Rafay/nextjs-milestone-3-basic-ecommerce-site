@@ -11,27 +11,15 @@ import { FaHome, FaInfoCircle, FaPhoneAlt, FaProductHunt } from "react-icons/fa"
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const menuVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  const logoVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1 },
-  };
 
   return (
     <nav className="bg-primary shadow-lg text-primary-foreground">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <motion.div
+          <div
             className="flex items-center space-x-2"
-            variants={logoVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.8 }}
+
           >
             <div className="bg-primary-foreground p-2 rounded-full shadow-md">
               <span className="text-primary text-lg font-bold">VC</span>
@@ -40,7 +28,7 @@ const Navbar = () => {
               <span className="text-white">Vivid</span>{" "}
               <span className="text-secondary">Cart</span>
             </Link>
-          </motion.div>
+          </div>
 
           {/* Menu Items */}
           <div className="hidden md:flex space-x-8">
@@ -109,64 +97,61 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={menuVariants}
+          <div
+
             className="md:hidden mt-2 bg-primary p-4 rounded-lg shadow-lg"
           >
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground  gap-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <FaHome size={20} />
-                <span>Home</span>
+                Home
               </Link>
               <Link
                 href="/product"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground gap-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <FaProductHunt size={20} />
-                <span>Products</span>
+                Products
               </Link>
               <Link
                 href="/about"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground gap-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <FaInfoCircle size={20} />
-                <span>About</span>
+                About
               </Link>
               <Link
                 href="/contact"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground gap-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <FaPhoneAlt size={20} />
-                <span>Contact</span>
+                Contact
               </Link>
               <Link
                 href="/wishlist"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground gap-2"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
-                <AiOutlineHeart size={20} />  
-                <span>Wishlist</span>
+                <AiOutlineHeart size={20} />
+                Wishlist
               </Link>
               <Link
                 href="/cart"
-                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground"
+                className="text-lg flex items-center space-x-2 hover:bg-secondary px-4 py-2 rounded-lg text-primary-foreground gap-2" 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 <BsFillCartFill size={20} />
-                <span>Cart</span>
+                Cart
               </Link>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
     </nav>

@@ -194,7 +194,7 @@ const Cart = () => {
                         <span>${totalAmount.toFixed(2)}</span>
                       </div>
                       <Button
-                        className="mt-8 mx-auto bg-secondary hover:bg-accent w-full sm:w-auto"
+                        className="mt-8 mx-auto bg-secondary hover:bg-green-500 w-full sm:w-auto"
                         disabled={cartItems.length === 0}
                         onClick={() => toast.success("Proceeding to checkout!")}
                       >
